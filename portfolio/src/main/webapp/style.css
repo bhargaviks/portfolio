@@ -4,6 +4,13 @@
   width: 650px;
 }
 
+#center{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #greeting-container {
   margin-top: 20px;
 }
+
