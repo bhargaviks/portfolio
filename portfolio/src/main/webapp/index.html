@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
-
+  
   <head>
     <meta charset="UTF-8">
     <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">       <!-- Bulma.css is the css I used. so importing its CDN -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>             <!-- Font awesome- used for icons-->
+    <script src="script.js"></script>                                                               <!-- Javscript has function to generate random quote-->
   </head>
 
 
   <body class="has-background-grey-lighter">
+
+    <!-- This is the first section of the page that has my name and a brief introduction that talks about me -->
     <section class="hero is-medium is-dark is-bold">
       <div class="hero-body">
         <div class="container">
@@ -38,39 +39,45 @@
       </div>
     </section>
 
+    <!-- This section contains information and links related to my education, experience/projects, favorites, and points of contact. -->
     <section class="section">
       <div class="container">
-        <div class="columns">
-
+        <div class="columns">       <!-- The section is divided into columns for each of the above information. Each column has an article within which there are multiple boxes, and within those boxes there is an article. -->
+          
+          <!-- This column is for my EDUCATION-->
           <div class="column">
             <article class="message is-info">
               <div class="message-header"><p> EDUCATION </p></div>
               
               <div class="message-body">
+
+                <!-- Box for School -->
                 <div class="box">
                   <article class="media">
                     <div class="media-left"><figure class="image is-64x64"><img src="/images/psbb.png" alt="psbb"> </figure></div>
                     <div class="media-content">
                       <div class="content">
-                        <p class="title is-6 "> <strong>PSBB </strong> </p>
+                        <p class="title is-6 "> <strong>PSBB </strong> </p>     
                         <p class="subtitle is-6"> <small>School 2003-2018</small></p>
                       </div>
                     </div>
                   </article>
                 </div>
 
+                <!-- Box for University -->
                 <div class="box">
                   <article class="media">
                     <div class="media-left"><figure class="image is-64x64"><img src="/images/ucsc.jpg" alt="ucsc"> </figure></div>
                     <div class="media-content">
                       <div class="content">
-                        <p class="title is-6 is"><strong> University of California, Santacruz</strong></p>
+                        <p class="title is-6 is"><strong> University of California, Santacruz</strong></p>    <!-- University -->
                         <p class="subtitle is-6"> <small> College 2018-2022 </small> </p>
                       </div>
                     </div>
                   </article>
                 </div>
 
+                <!-- Box for Community college -->
                 <div class="box">
                   <article class="media">
                     <div class="media-left"><figure class="image is-64x64"><img src="/images/deanza.png" alt="deanza"> </figure></div>
@@ -83,16 +90,17 @@
                   </article>
                 </div>
               </div>
-
-            </article>
+            </article>     <!-- End of Education article -->
           </div> 
 
+          <!-- This column is for my EXPERIENCE AND PROJECTS-->
           <div class="column">
             <article class="message is-success">
               
               <div class="message-header"><p> EXPERIENCE and PROJECTS </p></div>
               <div class="message-body">
-
+                
+                <!-- Box for Google internship -->
                 <div class="box">
                   <article class="media">
                     <div class="media-left"><figure class="image is-64x64"><img src="/images/google.png" alt="google"> </figure></div>
@@ -105,18 +113,20 @@
                   </article>
                 </div>
 
+                <!-- Box for Projects in Java, Java swing, C/C++, and SQL -->
                 <div class="box">
                   <article class="media">
                     <div class="media-left"><figure class="image is-64x64"><img src="/images/lang.png" alt="language"> </figure></div>
                     <div class="media-content">
                       <div class="content">
-                        <p class="title is-6 is"><strong> Multiple projects in Java, Java swing, C/C++, and SQL.</strong></p>
+                        <p class="title is-6 is"><strong> Multiple projects in Java, <a href="https://github.com/bhargaviks/GUI-BMI-calculator" title="GUI">Java swing </a>, C/C++, and SQL.</strong></p>
                         <p class="subtitle is-6"><small> 2018-2020 <br> [View <a href="/files/RESUME.pdf" title="View Resume">Resume </a> for more detail!] </small></p>
                       </div>
                     </div>
                   </article>
                 </div>
 
+                <!-- Box for Technical Certifications -->
                 <div class="box">
                   <article class="media">
                     <div class="media-left"><figure class="image is-64x64"><img src="/images/coursera.jpeg" alt="coursera"> </figure></div>
@@ -132,15 +142,17 @@
                     </div>
                   </article>
                 </div>
-
               </div>
-            </article>
+            </article>    <!-- End of Experience and Projects article -->
           </div>
-
+          
+          <!-- This column is for my favorites-->
           <div class="column">
             <article class="message is-danger">
               <div class="message-header"><p> FAVORITES </p></div>
               <div class="message-body">
+
+                <!-- Box for swimming interest -->
                 <div class="box">
                   <article class="media">
                     <div class="media-left"><figure class="image is-64x64"><img src="/images/swimming.png" alt="swimming"> </figure></div>
@@ -153,6 +165,7 @@
                   </article>
                 </div>
 
+                <!-- Box for photography interest -->
                 <div class="box">
                   <article class="media">
                     <div class="media-left"><figure class="image is-64x64"><img src="/images/photograph.jpg" alt="photograph"> </figure></div>
@@ -165,6 +178,7 @@
                   </article>
                 </div>
 
+                <!-- Box for musical interest -->
                 <div class="box">
                   <article class="media">
                     <div class="media-left"><figure class="image is-64x64"><img src="/images/music.jpg" alt="music"> </figure></div>
@@ -180,11 +194,13 @@
             </article>
           </div> 
 
+          <!-- This column is for my contact information-->
           <div class="column">
             <article class="message is-warning">
               <div class="message-header"><p> CONTACT </p></div>
               <div class="message-body">
 
+                <!-- Linking Linkedin account-->
                 <div class="box">
                   <article class="media">
                     <div class="media-left"><figure class="image is-64x64"><img src="/images/linkedin.png" alt="linkedin"> </figure></div>
@@ -197,6 +213,7 @@
                   </article>
                 </div>
 
+                <!-- Linking Github account-->
                 <div class="box">
                   <article class="media">
                     <div class="media-left"><figure class="image is-64x64"> <img src="/images/git.png" alt="git"> </figure></div>
@@ -209,6 +226,7 @@
                   </article>
                 </div>
 
+                <!-- Linking gmail account-->
                 <div class="box">
                   <article class="media">
                     <div class="media-left"><figure class="image is-64x64"><img src="/images/gmail.jpg" alt="gmail"> </figure></div>
@@ -228,50 +246,58 @@
       </div>
     </section>
 
-    <!-- next set of boxes -->
-
+    <!-- 
+      This is the third section of the page about my achievements, important life skills, and languages I speak. This is again divided into two columns, the left column has achievements in an article with boxes
+      and the second columns has two articles (one for skills and the other for languages). Inside each article, there are boxes, and each box has an article within it to talk about each instance/event. 
+    -->
     <section class="section">
       <div class="container">
         <div class="columns">
+
+          <!--  This column has achievements in it. -->
           <div class="column">
-            <!-- This is column 1 content -->
+
             <article class="message is-dark">
               <div class="message-header"><p> ACHIEVEMENTS </p></div>
               <div class="message-body">
 
+                <!-- Dean's honor -->
                 <div class="box">
                   <article class="media">
                     <div class="media-content">
                       <div class="content">
-                        <p class="title is-6 "><strong> Awarded the Dean's Honors award at UCSC for securing exceptional grades. </strong></p>
+                        <p class="title is-6 "><strong> Awarded the <a href="https://honors.ucsc.edu/honors-programs/deans-honors/spring-2019.html" title="Dean's honor"> Dean's Honors award </a> at UCSC for securing exceptional grades. </strong></p>
                         <p class="subtitle is-6"> June 2019 </p>
                       </div>
                     </div>
                   </article>
                 </div>
 
+                <!-- Certifications -->
                 <div class="box">
                   <article class="media">
                     <div class="media-content">
                       <div class="content">
-                        <p class="title is-6 is"><strong> Secured Two Advanced Python certifications in intermediate programming and Data Structures from the University of Michigan. </strong></p>
+                        <p class="title is-6 is"><strong> Secured Two Advanced Python certifications in intermediate programming and Data Structures, and a SQL certification from the University of Michigan. </strong></p>
                         <p class="subtitle is-6"> <small> August 2019 </small> </p>
                       </div>
                     </div>
                   </article>
                 </div>
 
+                <!-- All rounder Gold Medallist -->
                 <div class="box">
                   <article class="media">
                     <div class="media-content">
                       <div class="content">
-                        <p class="title is-6"><strong>Allrounder and Gold Medallist in 12th grade in one of the most reputed schools of India.</strong></p>
+                        <p class="title is-6"><strong><a href="/files/certificate.pdf" title="Certificate"> Allrounder</a> and Gold Medallist in 12th grade in one of the most reputed schools of India.</strong></p>
                         <p class="subtitle is-6"> <small> March 2018 </small> </p>
                       </div>
                     </div>
                   </article>
                 </div>
 
+                <!-- Independent technical projects-->
                 <div class="box">
                   <article class="media">
                     <div class="media-content">
@@ -283,6 +309,7 @@
                   </article>
                 </div>
 
+                <!-- Olympiad prices -->
                 <div class="box">
                   <article class="media">
                     <div class="media-content">
@@ -297,11 +324,15 @@
             </article>
           </div> 
 
+          <!-- This is the second column in the third section of the page that talks about both skills and languages- each are defined inside a separate article.-->
           <div class="column">
+
+            <!-- Inside this second column, this article encapsulates a few skills that define me. -->
             <article class="message is-primary">
               <div class="message-header"><p> A FEW <strong> IMPORTANT <strong> SKILLS THAT DEFINE ME </p> </div>
                 <div class="message-body">
 
+                  <!-- Problem Solving skills -->
                   <div class="box">
                     <article class="media">
                       <div class="media-content"> 
@@ -313,6 +344,7 @@
                     </article>
                   </div>
 
+                  <!-- TeamWork-->
                   <div class="box">
                     <article class="media">
                       <div class="media-content">
@@ -324,6 +356,7 @@
                     </article>
                   </div>
 
+                  <!-- Responsibility-->
                   <div class="box">
                     <article class="media">
                       <div class="media-content">
@@ -335,6 +368,7 @@
                     </article>
                   </div>
 
+                  <!-- Emotional Intelligence-->
                   <div class="box">
                     <article class="media">
                       <div class="media-content">
@@ -348,6 +382,7 @@
                 </div>
             </article>
 
+            <!-- This article specifies the languages I speak in the form of an unordered list-->
             <article class="message is-link">
               <div class="message-header"><p> LANGUAGES </p></div>
               <div class="message-body">
@@ -362,20 +397,21 @@
       </div>
     </section>
 
+    <!-- This section of the page contains tabs that take you to other html pages that I created. In order to navigate to those pages, the client can click the different tabs available. -->
     <section class="section is-warning">
       <div class="container">
         <div class="tabs is-toggle is-large is-centered">
           <ul>
-            <li><a href="/files/RESUME.pdf" title="View Resume"><span class="icon"><i class="fas fa-file"></i></span> <span> Resume</span> </a></li>
-            <li><a href="images.html"> <span class="icon"><i class="fas fa-portrait"></i></span><span>My Pictures</span> </a></li>
-            <li><a href="photo.html"> <span class="icon"><i class="fas fa-camera"></i></span><span>My Photography</span> </a></li>
-            <li><a href="quote.html"> <span class="icon"><i class="fas fa-quote-right"></i></span><span> My favorite Quote </span> </a></li>
+            <li><a href="/files/RESUME.pdf" title="View Resume"><span class="icon"><i class="fas fa-file"></i></span> <span> Resume</span> </a></li>     <!-- Takes you to my resume when clicked-->
+            <li><a href="images.html"> <span class="icon"><i class="fas fa-portrait"></i></span><span>My Pictures</span> </a></li>                       <!-- Takes you to more pictures of me -->
+            <li><a href="photo.html"> <span class="icon"><i class="fas fa-camera"></i></span><span>My Photography</span> </a></li>                       <!-- Takes you to a page that has a few pictures I have taken-->
+            <li><a href="quote.html"> <span class="icon"><i class="fas fa-quote-right"></i></span><span> My Favorite Quote </span> </a></li>             <!-- Takes you to a page that displays a random favorite quote of mine. -->
           </ul>
         </div>
       </div>
     </section>
 
-
+    <!-- This section of the page is present in all my html pages. It basically says that I am the author of the page and specifies the CSS I have used to render my web pages. -->
     <section class="section">
       <div class="container">
         <footer class="footer">
