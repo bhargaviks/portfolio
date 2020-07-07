@@ -2,28 +2,27 @@
 // This function generates a random quote to display, also making sure that the previously displayed random image is not the same as the current random image.
 function randomizeQuote() {
 
-  const range= 4;    // This constant variable keeps track of the number of quotes I have. 
+  const NUM_QUOTES = 4;    // This constant variable keeps track of the number of quotes (images) I have. 
 
-  // ImageNumber has the Image index of the quotes. This generates a number between [1-4]
-  var imageNumber = Math.floor(Math.random() * range) + 1;
+  // ImageNumber has the Image index of the quotes. This generates a number between [1- NUM_QUOTES]
+  var imageNumber = Math.floor(Math.random() * NUM_QUOTES) + 1;
 
   // To check if an image exists already. The length of the list returned must have some element in it. This means that this is not the first time the button was clicked after page reload. 
   if($('#generated-quote-id').length>0)
   {
     var displayedImageNumber = $('#generated-quote-id').attr('src').substr(13,1);    // This gets the number(index) of the image that was displayed right before the button was clicked. 
 
-    // If the displayed picture and the currently generated image have the same index, 
+    
     if(imageNumber+"" === displayedImageNumber)
-    {
-      // And if the Number is the last value in the set of images, simply make sure to print the first picture of the bunch.
-      if(imageNumber === range) {
-        imageNumber = 1;
+    { // If the displayed picture and the currently generated image have the same index
+      
+      imageNumber = Math.floor(Math.random() * (NUM_QUOTES-1)) + 1;         // Generate a number between [1- (NUM_QUOTES - 1)]
+
+      if(imageNumber >= displayedImageNumber) {
+        // If the newly generated number is greater than or equal to the previously generated number, then add 1 to it. Otherwise, keep the value.
+        imageNumber = imageNumber + 1;
       }
 
-      // If it's not the highest number, then simply add 1 to the randomized index.
-      else {
-        imageNumber = imageNumber + 1;
-      } 
     }
     
   }
