@@ -27,7 +27,6 @@ function randomizeQuote() {
     
   }
   
-
   // Now, the page has to link the image and the division in quote.html
   const imgUrl = '/quotes/quote' + imageNumber + '.jpg';                         // Generates image url
   const imgElement = document.createElement('img');                              // Creates a stand alone image tag

@@ -21,7 +21,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet that returns HTML that contains the page view count. */
-@WebServlet("/page-views")
+@WebServlet("/page-views")  
+/** 
+  PageViewServlet is triggered and the functions 
+  Within it are called whenever the client requests "page-views" 
+**/
+
 public class PageViewServlet extends HttpServlet {
 
   private int pageViews = 0;
