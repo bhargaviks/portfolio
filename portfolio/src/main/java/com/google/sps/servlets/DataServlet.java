@@ -14,7 +14,8 @@
 
 package com.google.sps.servlets;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import com.google.gson.Gson;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -40,12 +41,14 @@ public class DataServlet extends HttpServlet {
   /* This function is executed when fetch('/data') is called. */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    
     Gson g = new Gson();                                // Imported in pom and above
     String json = g.toJson(messages);
     response.setContentType("application/json;");
     response.getWriter().println(json);
 
     /* 
+      TODO:
       THIS BLOCK OF COMMENTS WERE FROM PREVIOUS WALKTHROUGHS.
       INTENDED. USEFUL COMMENTS.
 
