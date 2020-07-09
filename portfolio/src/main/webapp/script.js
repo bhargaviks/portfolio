@@ -40,3 +40,18 @@ function randomizeQuote() {
   $('#generated-quote-id').height(650);                                          // Specifies the height of the image
 
 }
+
+/*
+  This is a function I am writing to get a greeting in my portfolio page.
+  By clicking the button on the page, this function is called and a request is
+  sent to the server. This function also handles the request and delivers
+  the required output. Fetch data and trigger servlet, take the response and convert it to 
+  text, place the greeting in the greeting-container division
+*/
+function getGreeting() {
+
+  fetch('/data').then(response => response.text()).then((greeting) => {
+    document.getElementById('greeting-container').innerText = greeting;
+  });
+
+}
