@@ -14,6 +14,8 @@
 
 package com.google.sps.servlets;
 
+import java.util.*;
+import com.google.gson.Gson;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,11 +25,36 @@ import javax.servlet.http.HttpServletResponse;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+  
+  private ArrayList<String> messages;
 
+  /** Initializing the arraylist that holds the messages with hard-coded strings */
+  @Override
+  public void init() {
+    messages = new ArrayList<>();
+    messages.add("What a beautiful day it is today!");
+    messages.add("I am a STEP intern in week 4!");
+    messages.add("Positivity is the key to success!");
+  }
+
+  /* This function is executed when fetch('/data') is called. */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("Hello Bhargavi!");   // Added my name instead of  World.
-    response.getWriter().println("I am learning Servlets!");
+    Gson g = new Gson();                                // Imported in pom and above
+    String json = g.toJson(messages);
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
+
+    /* 
+      THIS BLOCK OF COMMENTS WERE FROM PREVIOUS WALKTHROUGHS.
+      INTENDED. USEFUL COMMENTS.
+
+      response.setContentType("text/html;");
+      response.getWriter().println("<h1>Hello Bhargavi!</h1>");   // Added my name instead of  World.
+      response.getWriter().println("<h2>I am learning Servlets!</h2>");
+    */
+
+
   }
 }
+
