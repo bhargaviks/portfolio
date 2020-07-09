@@ -55,3 +55,26 @@ function getGreeting() {
   });
 
 }
+
+/* Requests data (messages in this case) from the server. */
+function getMessages() {
+
+  fetch('/data').then(response => response.json()).then( (messagesObj) => {
+    const messageListElement = document.getElementById('message-container');
+    messageListElement.innerHTML = '';
+    messageListElement.appendChild(
+        createListElement('First Message: ' + messagesObj[0]));
+    messageListElement.appendChild(
+        createListElement('Second Message: ' + messagesObj[1]));
+    messageListElement.appendChild(
+        createListElement('Third Message: ' + messagesObj[2]));
+  });
+
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
