@@ -1,4 +1,3 @@
-
 // This function generates a random quote to display, also making sure that the previously displayed random image is not the same as the current random image.
 function randomizeQuote() {
 
@@ -56,23 +55,21 @@ function getGreeting() {
 
 }
 
-/* Requests data (messages in this case) from the server. */
+// Requests data (messages in this case) from the server.
 function getMessages() {
 
   fetch('/data').then(response => response.json()).then( (messagesObj) => {
-    const messageListElement = document.getElementById('message-container');
+    const messageListElement = document.getElementById('comment-container');
     messageListElement.innerHTML = '';
-    messageListElement.appendChild(
-        createListElement('First Message: ' + messagesObj[0]));
-    messageListElement.appendChild(
-        createListElement('Second Message: ' + messagesObj[1]));
-    messageListElement.appendChild(
-        createListElement('Third Message: ' + messagesObj[2]));
+    messagesObj.forEach( (comment) => {
+      messageListElement.appendChild(
+        createListElement(comment));
+    })
   });
 
 }
 
-/** Creates an <li> element containing text. */
+// Creates an <li> element containing text.
 function createListElement(text) {
   
   const liElement = document.createElement('li');
