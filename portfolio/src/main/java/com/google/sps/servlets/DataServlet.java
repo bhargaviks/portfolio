@@ -33,9 +33,6 @@ public class DataServlet extends HttpServlet {
   @Override
   public void init() {
     messages = new ArrayList<>();
-    // messages.add("What a beautiful day it is today!");
-    // messages.add("I am a STEP intern in week 4!");
-    // messages.add("Positivity is the key to success!");
   }
 
   /* This function is executed when fetch('/data') is called. The goal of this function is to create a gson object, conver messages into gson, and send it bac to script.js */
@@ -46,18 +43,12 @@ public class DataServlet extends HttpServlet {
     String json = g.toJson(messages);
     response.setContentType("application/json;");
     response.getWriter().println(json);
-
     /* 
       TODO:
-      THIS BLOCK OF COMMENTS WERE FROM PREVIOUS WALKTHROUGHS.
-      INTENDED. USEFUL COMMENTS.
-
       response.setContentType("text/html;");
       response.getWriter().println("<h1>Hello Bhargavi!</h1>");   // Added my name instead of  World.
       response.getWriter().println("<h2>I am learning Servlets!</h2>");
     */
-
-
   }
 
   @Override
@@ -67,8 +58,7 @@ public class DataServlet extends HttpServlet {
     messages.add(text);
     response.sendRedirect("/comments.html");
 
-    //  TODO:
-    // Respond with the result.
+    // TODO: Respond with the result.
     // response.setContentType("text/html;");
     // response.getWriter().println(Arrays.toString(messages));
   }
@@ -87,5 +77,3 @@ public class DataServlet extends HttpServlet {
   }
 
 }
-
-
