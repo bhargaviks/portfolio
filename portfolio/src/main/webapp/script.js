@@ -56,18 +56,16 @@ function getGreeting() {
 
 }
 
-/* Requests data (messages in this case) from the server. */
+// /* Requests data (messages in this case) from the server. */
 function getMessages() {
 
   fetch('/data').then(response => response.json()).then( (messagesObj) => {
-    const messageListElement = document.getElementById('message-container');
+    const messageListElement = document.getElementById('comment-container');
     messageListElement.innerHTML = '';
-    messageListElement.appendChild(
-        createListElement('First Message: ' + messagesObj[0]));
-    messageListElement.appendChild(
-        createListElement('Second Message: ' + messagesObj[1]));
-    messageListElement.appendChild(
-        createListElement('Third Message: ' + messagesObj[2]));
+    messagesObj.forEach( (comment) => {
+      messageListElement.appendChild(
+        createListElement(comment));
+    })
   });
 
 }
@@ -80,3 +78,5 @@ function createListElement(text) {
   return liElement;
 
 }
+
+  

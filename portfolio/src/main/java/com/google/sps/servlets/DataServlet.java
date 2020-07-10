@@ -33,12 +33,12 @@ public class DataServlet extends HttpServlet {
   @Override
   public void init() {
     messages = new ArrayList<>();
-    messages.add("What a beautiful day it is today!");
-    messages.add("I am a STEP intern in week 4!");
-    messages.add("Positivity is the key to success!");
+    // messages.add("What a beautiful day it is today!");
+    // messages.add("I am a STEP intern in week 4!");
+    // messages.add("Positivity is the key to success!");
   }
 
-  /* This function is executed when fetch('/data') is called. */
+  /* This function is executed when fetch('/data') is called. The goal of this function is to create a gson object, conver messages into gson, and send it bac to script.js */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     
@@ -59,5 +59,33 @@ public class DataServlet extends HttpServlet {
 
 
   }
+
+  @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // Get the input from the form.
+    String text = getParameter(request, "text-input", "");
+    messages.add(text);
+    response.sendRedirect("/comments.html");
+
+    //  TODO:
+    // Respond with the result.
+    // response.setContentType("text/html;");
+    // response.getWriter().println(Arrays.toString(messages));
+  }
+
+
+  /**
+   * @return the request parameter, or the default value if the parameter
+   *         was not specified by the client
+   */
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+    String value = request.getParameter(name);
+    if (value == null) {
+      return defaultValue;
+    }
+    return value;
+  }
+
 }
+
 
