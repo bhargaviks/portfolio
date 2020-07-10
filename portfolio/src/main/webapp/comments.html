@@ -4,24 +4,28 @@
   <head>
     <meta charset="UTF-8">
     <title>Comments</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">       <!-- Bulma.css is the css I used. so importing its CDN -->
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>             <!-- Font awesome- used for icons-->
     <script src="script.js"></script>                                                               <!-- Javscript has function to generate random quote-->
   </head>
 
 
-  <body class="has-background-grey-lighter" onload="getMessages()">
+  <body class="has-background-info-light" onload="getMessages()">
     
     <section class="section">
       <div class="container">
 
-          <form action="/data" method="POST">
-           
-           <p>Enter something you want to share in the below box: </p>
-            <textarea name="text-input" placeholder="What do you want to share?" style="margin: 0px; width: 1507px; height: 33px;"></textarea>
-            <br/><br/>
+          <form action="/new-comment" method="POST">
 
-            <input type="submit" value="Post Comment">
+            <p class="title is-5 has-text-info-dark is-italic"> Enter something you want to share in the below box: </p>
+            <div class="field">
+              <div class="control is-loading"><textarea name="text-input" class="textarea is-danger" placeholder="What do you want to share?"></textarea></div>
+            </div>
+            <br/><br/>
+            
+            <input type="submit" value="Post Comment" class="button is-primary"> 
+
           </form>
       </div>
     </section>
@@ -29,8 +33,18 @@
 
     <section class="section">
       <div class="container">
-        <div id="comment-container"></div> 
+        <ul id="comment-list" ></ul>
       </div>
     </section>
+
+    <!-- This section of the page is present in all my html pages. It basically says that I am the author of the page and specifies the CSS I have used to render my web pages. -->
+    <section class="section">
+      <div class="container">
+        <footer class="footer">
+          <div class="content has-text-centered"><p>This page was created by Bhargavi Kumar Sundaresan. <a href="https://bulma.io/"> <strong> BULMA CSS </strong> </a> was used.</p></div>
+        </footer>
+      </div>
+    </section>
+
   </body>
 </html>
