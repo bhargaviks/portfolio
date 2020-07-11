@@ -55,25 +55,47 @@ function getGreeting() {
 
 }
 
-// Requests data (messages in this case) from the server.
+// Loads data (messages in this case) from datastore.
 function getMessages() {
 
-  fetch('/data').then(response => response.json()).then( (messagesObj) => {
-    const messageListElement = document.getElementById('comment-container');
-    messageListElement.innerHTML = '';
-    messagesObj.forEach( (comment) => {
-      messageListElement.appendChild(
-        createListElement(comment));
+  fetch('/data').then(response => response.json()).then( (comments) => {
+    const commentListElement = document.getElementById('comment-list');
+    // commentListElement.innerHTML = '';
+    comments.forEach( (comment) => {
+      commentListElement.appendChild(
+        createCommentElement(comment));
     })
   });
 
 }
 
 // Creates an <li> element containing text.
-function createListElement(text) {
-  
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+function createCommentElement(comment) {
 
+  const commentElement = document.createElement('li');
+  commentElement.className = 'comment';
+
+  const textElement = document.createElement('span');
+  textElement.innerText = comment.text;
+
+  const deleteButtonElement = document.createElement('button');
+  deleteButtonElement.innerText = 'Delete';
+  deleteButtonElement.addEventListener('click', () => {
+    deleteComment(comment);
+
+    // Remove the comment from the DOM.
+    commentElement.remove();
+  });
+
+  commentElement.appendChild(textElement);
+  commentElement.appendChild(deleteButtonElement);
+  return commentElement;
+
+}
+
+/** Tells the server to delete the comment. */
+function deleteComment(comment) {
+  const params = new URLSearchParams();
+  params.append('id', comment.id);
+  fetch('/delete-comment', {method: 'POST', body: params});
 }
