@@ -56,11 +56,9 @@ function getGreeting() {
 }
 
 // Loads data (messages in this case) from datastore.
-function getMessages() {
-
-  fetch('/data').then(response => response.json()).then( (comments) => {
+function getMessages(limit) {
+  fetch('/data?limit='+limit).then(response => response.json()).then( (comments) => {
     const commentListElement = document.getElementById('comment-list');
-    // commentListElement.innerHTML = '';
     comments.forEach( (comment) => {
       commentListElement.appendChild(
         createCommentElement(comment));
@@ -84,7 +82,7 @@ function createCommentElement(comment) {
     deleteComment(comment);
 
     // Remove the comment from the DOM.
-    commentElement.remove();
+    commentElement.remove();      // Removes the specified element fron DOM.
   });
 
   commentElement.appendChild(textElement);
@@ -96,6 +94,8 @@ function createCommentElement(comment) {
 /** Tells the server to delete the comment. */
 function deleteComment(comment) {
   const params = new URLSearchParams();
+  console.log(params);
   params.append('id', comment.id);
+  console.log(params);
   fetch('/delete-comment', {method: 'POST', body: params});
 }

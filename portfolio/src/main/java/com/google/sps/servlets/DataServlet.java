@@ -37,13 +37,29 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String slimit = request.getParameter("limit");
+    int limit;
+
+    try {
+      limit = Integer.parseInt(slimit);
+      if(limit<0)
+        limit = Integer.MAX_VALUE;
+    } catch (Exception e) {
+      limit = Integer.MAX_VALUE;
+    }
+
+    //System.out.println(limit);
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-
+    int ct=0;         //counter for limiting number of results. 
     List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
+      if(ct >= limit)
+        break;  //come here when we have already displayed the required number of comments
+      
+      ct++;
       long id = entity.getKey().getId();
       String text = (String) entity.getProperty("comment");
       long timestamp = (long) entity.getProperty("timestamp");
