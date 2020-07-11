@@ -17,6 +17,8 @@ public class NewCommentServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String text = request.getParameter("text-input");     // Comment given to post
+    String limit = request.getParameter("comment-limit");     // Comment given to post
+    
     long timestamp = System.currentTimeMillis();          // Time at which the comment was made
 
     Entity commentEntity = new Entity("Comment");
@@ -25,7 +27,7 @@ public class NewCommentServlet extends HttpServlet {
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
-    response.sendRedirect("/comments.html");
+    response.sendRedirect("/comments.html?limit="+limit);
 
   }
 }

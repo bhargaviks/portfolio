@@ -56,7 +56,8 @@ function getGreeting() {
 }
 
 // Loads data (messages in this case) from datastore.
-function getMessages(limit) {
+function getMessages() {  
+  var limit = new URLSearchParams(window.location.search).get('limit');
   fetch('/data?limit='+limit).then(response => response.json()).then( (comments) => {
     const commentListElement = document.getElementById('comment-list');
     comments.forEach( (comment) => {
@@ -99,3 +100,9 @@ function deleteComment(comment) {
   console.log(params);
   fetch('/delete-comment', {method: 'POST', body: params});
 }
+
+/*
+  if(limit == undefined){
+    limit = new URLSearchParams(window.location.search).get('limit');
+  }
+*/
