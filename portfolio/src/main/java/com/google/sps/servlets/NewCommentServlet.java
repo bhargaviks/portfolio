@@ -27,8 +27,5 @@ public class NewCommentServlet extends HttpServlet {
     datastore.put(commentEntity);
     response.sendRedirect("/comments.html");
 
-    
   }
-
-  
 }
