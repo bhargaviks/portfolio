@@ -136,3 +136,13 @@ function deleteComment(comment) {
   fetch('/delete-comment', {method: 'POST', body: params});
 }
 
+
+/** Tells the server to delete all comments. */
+function deleteAll() {
+  const params = new URLSearchParams();
+  fetch('/delete-all', {method: 'POST', body: params}).then( (response) => {
+    const commentListElement = document.getElementById('comment-list');
+    commentListElement.innerHTML = '';
+    reloadMessages();
+  });
+}
