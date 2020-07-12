@@ -13,14 +13,15 @@
 
   <body class="has-background-info-light" onload="onPageLoad()">
     
+    <!-- This section for posting the comment and refreshing all the comments. -->
     <section class="section">
       <div class="container">
-
           <form action="/new-comment" method="POST">
-
             <p class="title is-5 has-text-info-dark is-italic"> Enter something you want to share in the below box: </p>
             <div class="field">
-              <div class="control"><textarea name="text-input" class="textarea is-danger" placeholder="What do you want to share?"></textarea></div>
+              <div class="control">
+                <textarea name="text-input" class="textarea is-danger" placeholder="What do you want to share?"></textarea>
+              </div>
             </div>
 
             <input type="submit" value="Post Comment" class="button is-primary is-rounded">
@@ -28,9 +29,10 @@
 
             <label class="label">Enter number of comments you want to see after you post this comment: </label>
             <div class="field">
-              <div class="control"><input id = "reload-limit" onchange="reloadMessages()" class="input is-info" type="text" name="comment-limit" placeholder="How many comments?"></div>
-              <p class="help">Hit enter or click outside the box to see the change in the number of results. Type "all" to see all the comments.</p> 
-              <br>
+              <div class="control">
+                <input id = "reload-limit" onchange="reloadMessages()" class="input is-info" type="text" name="comment-limit" placeholder="How many comments?">
+              </div>
+              <p class="help">Hit enter or click outside the box to see the change in the number of results. Type "all" to see all the comments.</p><br>
               <button class="button is-danger" onclick="reloadMessages()"> <i class="fas fa-sync"></i>  Refresh Comments</button> 
               <p class="help">Click Refresh Comments button to refresh all comments. This way changes made on another tab will be reflected here.</p>           
             </div>
@@ -38,37 +40,19 @@
       </div>
     </section>
 
-
-    <!-- <section class="section">
-      <div class="container">
-        <form action="/reload" method="POST">
-
-          <label class="label">Enter number of comments you want to see after you post this comment: </label>
-          <div class="field">
-            <div class="control"><input id = "reload-limit" onchange="reloadMessages()" class="input is-info" type="text" name="comment-limit" placeholder="How many comments?"></div>
-            <p class="help">Type "all" to see all the comments.</p>            
-          </div>
-
-          <br/><br/>
-          
-          <input type="submit" value="Reload" class="button is-primary"> 
-        </form>
-      </div>
-    </section> -->
-
+    <!-- This section is where the created comments will be displayed-->
     <section class="section">
       <div class="container">
         <ul id="comment-list" ></ul>
       </div>
     </section>
 
+    <!-- This has a delete al button that deletes all the comments from both, the UI and Datastore.-->
     <section class="section">
       <div class="container">
         <button class="button is-normal is-warning" onclick="deleteAll()" > <i class="fas fa-trash-alt"></i> Delete all comments </button>
       </div>
     </section>
-
-
 
     <!-- This section of the page is present in all my html pages. It basically says that I am the author of the page and specifies the CSS I have used to render my web pages. -->
     <section class="section">

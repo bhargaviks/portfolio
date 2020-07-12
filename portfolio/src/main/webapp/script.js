@@ -2,24 +2,19 @@
 function randomizeQuote() {
 
   const NUM_QUOTES = 4;    // This constant variable keeps track of the number of quotes (images) I have. 
-
-  // ImageNumber has the Image index of the quotes. This generates a number between [1- NUM_QUOTES]
-  var imageNumber = Math.floor(Math.random() * NUM_QUOTES) + 1;
+  var imageNumber = Math.floor(Math.random() * NUM_QUOTES) + 1;       // ImageNumber has the Image index of the quotes. This generates a number between [1- NUM_QUOTES]
 
   // To check if an image exists already. The length of the list returned must have some element in it. This means that this is not the first time the button was clicked after page reload. 
   if($('#generated-quote-id').length>0)
   {
     var displayedImageNumber = $('#generated-quote-id').attr('src').substr(13,1);    // This gets the number(index) of the image that was displayed right before the button was clicked. 
 
-    
     if(imageNumber+"" === displayedImageNumber)
     { // If the displayed picture and the currently generated image have the same index
       
       imageNumber = Math.floor(Math.random() * (NUM_QUOTES-1)) + 1;         // Generate a number between [1- (NUM_QUOTES - 1)]
-
       if(imageNumber >= displayedImageNumber) {
-        // If the newly generated number is greater than or equal to the previously generated number, then add 1 to it. Otherwise, keep the value.
-        imageNumber = imageNumber + 1;
+        imageNumber = imageNumber + 1;          // If the newly generated number is greater than or equal to the previously generated number, then add 1 to it. Otherwise, keep the value.
       }
 
     }
@@ -57,7 +52,9 @@ function getGreeting() {
 
 // Loads data (messages in this case) from datastore according to limit. The first time limit is null, so all comments are shown. 
 function getMessages() {  
+
   var limit = new URLSearchParams(window.location.search).get('limit');
+
   fetch('/data?limit='+limit).then(response => response.json()).then( (comments) => {
     const commentListElement = document.getElementById('comment-list'); 
     comments.forEach( (comment) => {
@@ -68,21 +65,25 @@ function getMessages() {
 
 }
 
+// The two functions that get called onload of the body of comments.html
 function onPageLoad()
 {
-  getMessages();
-  populateLimitTextbox();
-
+  getMessages();            // Gets the messages loaded to the page  
+  populateLimitTextbox();   // Retain the limit if the user has entered previously, and display the required number of comments according to that.
 }
 
+/* 
+  The purpose of this function is to keep the same value of the limit 
+  entered by the user, so that when the user posts a new message, the
+  same number (limit) is retained. 
+*/
 function populateLimitTextbox(){
-  console.log("populateLimitTextbox");
+  
   if(document.getElementById('reload-limit').value == "") {
     var limit = new URLSearchParams(window.location.search).get('limit');
+
     if(Number(limit)>0){
-      console.log("Before assignment: "+limit);
       document.getElementById('reload-limit').value = limit;
-      console.log("After assignment: "+ limit);
     }
   }
   
@@ -91,7 +92,7 @@ function populateLimitTextbox(){
 // reloads appropriately with limit
 function reloadMessages() {  
   var limit = document.getElementById('reload-limit').value;
-  console.log(limit);
+  
   fetch('/data?limit='+limit).then(response => response.json()).then( (comments) => {
     const commentListElement = document.getElementById('comment-list');
     commentListElement.innerHTML = '';
@@ -116,8 +117,6 @@ function createCommentElement(comment) {
   deleteButtonElement.innerText = 'Delete';
   deleteButtonElement.addEventListener('click', () => {
     deleteComment(comment);
-
-    // Remove the comment from the DOM.
     commentElement.remove();      // Removes the specified element fron DOM.
   });
 
@@ -130,9 +129,7 @@ function createCommentElement(comment) {
 /** Tells the server to delete the comment. */
 function deleteComment(comment) {
   const params = new URLSearchParams();
-  console.log(params);
   params.append('id', comment.id);
-  console.log(params);
   fetch('/delete-comment', {method: 'POST', body: params});
 }
 

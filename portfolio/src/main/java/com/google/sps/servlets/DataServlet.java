@@ -48,7 +48,6 @@ public class DataServlet extends HttpServlet {
       limit = Integer.MAX_VALUE;
     }
 
-    //System.out.println(limit);
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
