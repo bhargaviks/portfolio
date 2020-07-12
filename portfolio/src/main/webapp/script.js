@@ -55,11 +55,46 @@ function getGreeting() {
 
 }
 
-// Loads data (messages in this case) from datastore.
+// Loads data (messages in this case) from datastore according to limit. The first time limit is null, so all comments are shown. 
 function getMessages() {  
   var limit = new URLSearchParams(window.location.search).get('limit');
   fetch('/data?limit='+limit).then(response => response.json()).then( (comments) => {
+    const commentListElement = document.getElementById('comment-list'); 
+    comments.forEach( (comment) => {
+      commentListElement.appendChild(
+        createCommentElement(comment));
+    })
+  });
+
+}
+
+function onPageLoad()
+{
+  getMessages();
+  populateLimitTextbox();
+
+}
+
+function populateLimitTextbox(){
+  console.log("populateLimitTextbox");
+  if(document.getElementById('reload-limit').value == "") {
+    var limit = new URLSearchParams(window.location.search).get('limit');
+    if(Number(limit)>0){
+      console.log("Before assignment: "+limit);
+      document.getElementById('reload-limit').value = limit;
+      console.log("After assignment: "+ limit);
+    }
+  }
+  
+}
+
+// reloads appropriately with limit
+function reloadMessages() {  
+  var limit = document.getElementById('reload-limit').value;
+  console.log(limit);
+  fetch('/data?limit='+limit).then(response => response.json()).then( (comments) => {
     const commentListElement = document.getElementById('comment-list');
+    commentListElement.innerHTML = '';
     comments.forEach( (comment) => {
       commentListElement.appendChild(
         createCommentElement(comment));
@@ -101,8 +136,3 @@ function deleteComment(comment) {
   fetch('/delete-comment', {method: 'POST', body: params});
 }
 
-/*
-  if(limit == undefined){
-    limit = new URLSearchParams(window.location.search).get('limit');
-  }
-*/

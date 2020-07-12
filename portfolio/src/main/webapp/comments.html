@@ -11,7 +11,7 @@
   </head>
 
 
-  <body class="has-background-info-light" onload="getMessages()">
+  <body class="has-background-info-light" onload="onPageLoad()">
     
     <section class="section">
       <div class="container">
@@ -23,20 +23,38 @@
               <div class="control"><textarea name="text-input" class="textarea is-danger" placeholder="What do you want to share?"></textarea></div>
             </div>
 
-            <div class="field">
-              <label class="label">Enter number of comments you want to see </label>
-              <div class="control"><input class="input is-info" type="text" name="comment-limit" placeholder="How many comments?"></div>
-              <p class="help">Type "all" to see all the comments.</p>
-            </div>
-
+            <input type="submit" value="Post Comment" class="button is-primary is-rounded">
             <br/><br/>
-            
-            <input type="submit" value="Post Comment" class="button is-primary"> 
 
+            <label class="label">Enter number of comments you want to see after you post this comment: </label>
+            <div class="field">
+              <div class="control"><input id = "reload-limit" onchange="reloadMessages()" class="input is-info" type="text" name="comment-limit" placeholder="How many comments?"></div>
+              <p class="help">Hit enter or click outside the box to see the change in the number of results. Type "all" to see all the comments.</p> 
+              <br>
+              <button class="button is-danger" onclick="reloadMessages()"> <i class="fas fa-sync"></i>  Refresh Comments</button> 
+              <p class="help">Click Refresh Comments button to refresh all comments. This way changes made on another tab will be reflected here.</p>           
+            </div>
           </form>
       </div>
     </section>
 
+
+    <!-- <section class="section">
+      <div class="container">
+        <form action="/reload" method="POST">
+
+          <label class="label">Enter number of comments you want to see after you post this comment: </label>
+          <div class="field">
+            <div class="control"><input id = "reload-limit" onchange="reloadMessages()" class="input is-info" type="text" name="comment-limit" placeholder="How many comments?"></div>
+            <p class="help">Type "all" to see all the comments.</p>            
+          </div>
+
+          <br/><br/>
+          
+          <input type="submit" value="Reload" class="button is-primary"> 
+        </form>
+      </div>
+    </section> -->
 
     <section class="section">
       <div class="container">
