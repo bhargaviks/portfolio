@@ -144,11 +144,40 @@ function deleteAll() {
   });
 }
 
-/* The belowe functions are used for Map related stuff --> 
+/* The below functions are used for Map related stuff --> 
 
 /** Creates a map and adds it to the page. */
 function createMap() {
-  var home = {lat: 12.9697995, lng: 80.2074158};   // The map, centered at Uluru
-  const map = new google.maps.Map(document.getElementById('map'), {center: home, zoom: 8});
-  var marker = new google.maps.Marker({position: home, map: map, title: 'My home!'});
+
+  // This is the coordinates of my house in India
+  var home = {
+    lat: 12.9697995, 
+    lng: 80.2074158
+  };   
+  
+  // These are the map options that I pass in when I create the map
+  var options = {
+    center: home, 
+    zoom: 8
+  };
+
+  // I create the map that I need into the DOM element map with the specified options
+  const map = new google.maps.Map(document.getElementById('map'), options);
+
+  // This is the marker to my house. I create it with the position of my house.
+  var marker = new google.maps.Marker({
+    position: home, 
+    map: map, 
+    title: 'My home!'
+  });
+
+  // I create an infoWindow object that has the heading
+  var infoWindow = new google.maps.InfoWindow({
+    content: '<h4> This is my Home </h4>'
+  });
+
+  // I attach the marker and the infowindow so that when I click the marker, I open the infoWindow.
+  marker.addListener('click' , function() {
+    infoWindow.open(map,marker);
+  });
 }
