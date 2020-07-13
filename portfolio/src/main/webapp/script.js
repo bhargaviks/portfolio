@@ -143,3 +143,12 @@ function deleteAll() {
     reloadMessages();
   });
 }
+
+/* The belowe functions are used for Map related stuff --> 
+
+/** Creates a map and adds it to the page. */
+function createMap() {
+  var home = {lat: 12.9697995, lng: 80.2074158};   // The map, centered at Uluru
+  const map = new google.maps.Map(document.getElementById('map'), {center: home, zoom: 8});
+  var marker = new google.maps.Marker({position: home, map: map, title: 'My home!'});
+}
