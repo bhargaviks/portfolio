@@ -15,17 +15,21 @@ public class NewCommentServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
+
     String text = request.getParameter("text-input");     // Comment given to post
-    long timestamp = System.currentTimeMillis();          // Time at which the comment was made
+    String limit = request.getParameter("comment-limit");     // Comment given to post
+    if(text != null && text.length()>0){                      // if the user has typed nothing, so post only if you have any new data. Otherwise, just take care of the limit.
+      long timestamp = System.currentTimeMillis();          // Time at which the comment was made
+      Entity commentEntity = new Entity("Comment");
+      
+      commentEntity.setProperty("comment", text);
+      commentEntity.setProperty("timestamp", timestamp);
+      
+      DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+      datastore.put(commentEntity);
+    }
 
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("comment", text);
-    commentEntity.setProperty("timestamp", timestamp);
-
-    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-    datastore.put(commentEntity);
-    response.sendRedirect("/comments.html");
+    response.sendRedirect("/comments.html?limit="+limit);
 
   }
 }
