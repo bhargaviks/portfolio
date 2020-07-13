@@ -158,7 +158,7 @@ function createMap() {
   // These are the map options that I pass in when I create the map
   var options = {
     center: home, 
-    zoom: 8
+    zoom: 5
   };
 
   // I create the map that I need into the DOM element map with the specified options
@@ -168,7 +168,14 @@ function createMap() {
   var marker = new google.maps.Marker({
     position: home, 
     map: map, 
-    title: 'My home!'
+    title: 'Click to zoom!'
+  });
+
+  // Added a listener to come back to the marker if the page is moved and it's been 4 seconds. 
+  map.addListener('center_changed', function() {
+    window.setTimeout(function() {
+      map.panTo(marker.getPosition());
+    }, 4000);
   });
 
   // I create an infoWindow object that has the heading
@@ -179,5 +186,7 @@ function createMap() {
   // I attach the marker and the infowindow so that when I click the marker, I open the infoWindow.
   marker.addListener('click' , function() {
     infoWindow.open(map,marker);
+    map.setZoom(15);
+    map.setCenter(marker.getPosition());
   });
 }
