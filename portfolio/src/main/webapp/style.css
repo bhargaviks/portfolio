@@ -13,3 +13,11 @@
 .comment span {
   flex-grow: 1;
 }
+
+#map {
+  height: 500px;
+  width: 500px;
+  margin: 0 auto;
+  border: 10px solid black;
+}
+ 
