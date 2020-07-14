@@ -146,7 +146,6 @@ function deleteAll() {
 
 /* The below functions are used for Map related stuff */
 
-
 // The two functions that get called onload of the body of maps.html
 function onloadMaps()
 {
@@ -154,11 +153,10 @@ function onloadMaps()
   getPlaces();       // Fetch the servlet that populates my maps to be called
 }
 
-
 /** Creates a map and adds it to the page. */
 function createMap() {
 
-  // This is the coordinates of my house in India
+  // This is the coordinates of my office
   var office = {
     lat: 37.4220621, 
     lng: -122.0862784
@@ -200,6 +198,7 @@ function createMap() {
   });
 }
 
+/* This function is to get markers of my favorite places in the world. I use a CSV file to read in data */
 function getPlaces(){
 
   fetch('/point-data').then(response => response.json()).then((points) => {
@@ -220,6 +219,8 @@ function getPlaces(){
       });
 
       m.addListener('click' , function() {
+        map2.setZoom(17);
+        map2.setCenter(m.getPosition());
         new google.maps.InfoWindow({
         content: point.info
         }).open(map2,m);
