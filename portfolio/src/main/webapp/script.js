@@ -144,20 +144,29 @@ function deleteAll() {
   });
 }
 
-/* The below functions are used for Map related stuff --> 
+/* The below functions are used for Map related stuff */
+
+
+// The two functions that get called onload of the body of maps.html
+function onloadMaps()
+{
+  createMap();            // Gets the maps to load and display with markers
+  getPlaces();       // Fetch the servlet that populates my maps to be called
+}
+
 
 /** Creates a map and adds it to the page. */
 function createMap() {
 
   // This is the coordinates of my house in India
-  var home = {
-    lat: 12.9697995, 
-    lng: 80.2074158
+  var office = {
+    lat: 37.4220621, 
+    lng: -122.0862784
   };   
   
   // These are the map options that I pass in when I create the map
   var options = {
-    center: home, 
+    center: office, 
     zoom: 5
   };
 
@@ -166,9 +175,9 @@ function createMap() {
 
   // This is the marker to my house. I create it with the position of my house.
   var marker = new google.maps.Marker({
-    position: home, 
+    position: office, 
     map: map, 
-    title: 'Click to zoom!'
+    title: 'Click to zoom and see what this place represents!'
   });
 
   // Added a listener to come back to the marker if the page is moved and it's been 4 seconds. 
@@ -180,13 +189,44 @@ function createMap() {
 
   // I create an infoWindow object that has the heading
   var infoWindow = new google.maps.InfoWindow({
-    content: '<h4> This is my Home </h4>'
+    content: '<h4> Although we are working virtually, this is the <strong>location of my Google office</strong>!</h4>'
   });
 
   // I attach the marker and the infowindow so that when I click the marker, I open the infoWindow.
   marker.addListener('click' , function() {
     infoWindow.open(map,marker);
-    map.setZoom(15);
+    map.setZoom(17);
     map.setCenter(marker.getPosition());
   });
+}
+
+function getPlaces(){
+
+  fetch('/point-data').then(response => response.json()).then((points) => {
+
+    const map2 = new google.maps.Map(
+        document.getElementById('map2'),{
+          center: {lat: 40.1301716, lng: -8.2013862}, 
+          zoom: 2
+        });
+
+    points.forEach((point) => {
+      
+      // Marker for each point
+      var m = new google.maps.Marker({
+        position: {lat: point.lat, lng: point.lng}, 
+        map: map2, 
+        title: 'Click to know what place it is!'
+      });
+
+      m.addListener('click' , function() {
+        new google.maps.InfoWindow({
+        content: point.info
+        }).open(map2,m);
+      });
+
+    
+    });
+  });
+
 }
