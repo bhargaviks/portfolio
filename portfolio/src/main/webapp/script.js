@@ -225,8 +225,6 @@ function getPlaces(){
         content: point.info
         }).open(map2,m);
       });
-
-    
     });
   });
 
