@@ -21,7 +21,7 @@ public class NewCommentServlet extends HttpServlet {
 
     String text = request.getParameter("text-input");     // Comment given to post
     String limit = request.getParameter("comment-limit");     // Comment given to post
-    if(text != null && text.length()>0){                      // if the user has typed nothing, so post only if you have any new data. Otherwise, just take care of the limit.
+    if(text != null && text.length()>0){                      // If the user has typed nothing, so post only if you have any new data. Otherwise, just take care of the limit.
       
       long timestamp = System.currentTimeMillis();          // Time at which the comment was made
 

@@ -38,11 +38,11 @@ public class DataServlet extends HttpServlet {
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    int ct=0;         //counter for limiting number of results. 
+    int ct=0;         // Counter for limiting number of results. 
     List<Comment> comments = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
       if(ct >= limit)
-        break;  //come here when we have already displayed the required number of comments
+        break;  // Come here when we have already displayed the required number of comments
       
       ct++;
       long id = entity.getKey().getId();
