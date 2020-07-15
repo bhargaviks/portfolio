@@ -99,7 +99,7 @@ function createCommentElement(comment) {
   const textElement = document.createElement('span');
   var commentText = comment.text + "\nSentimental score: ";
   var score = comment.score;
-  textElement.innerText = commentText.concat(score);   //TODO try to append sentimnt score for now
+  textElement.innerText = commentText.concat(score); 
 
   const deleteButtonElement = document.createElement('button');
   deleteButtonElement.innerText = 'Delete';
@@ -215,5 +215,4 @@ function getPlaces(){
       });
     });
   });
-
 }

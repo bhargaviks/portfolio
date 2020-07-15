@@ -12,7 +12,6 @@ import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.LanguageServiceClient;
 import com.google.cloud.language.v1.Sentiment;
 
-
 /** Servlet responsible for creating new comments. */
 @WebServlet("/new-comment")
 public class NewCommentServlet extends HttpServlet {
@@ -41,8 +40,6 @@ public class NewCommentServlet extends HttpServlet {
       DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
       datastore.put(commentEntity);
     }
-
     response.sendRedirect("/comments.html?limit="+limit);
-
   }
 }
