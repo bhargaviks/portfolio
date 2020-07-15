@@ -97,7 +97,9 @@ function createCommentElement(comment) {
   commentElement.className = 'comment';
 
   const textElement = document.createElement('span');
-  textElement.innerText = comment.text;
+  var commentText = comment.text;
+  var score = comment.score;
+  textElement.innerText = commentText.concat(score);   //TODO try to append sentimnt score for now
 
   const deleteButtonElement = document.createElement('button');
   deleteButtonElement.innerText = 'Delete';
