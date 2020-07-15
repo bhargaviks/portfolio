@@ -97,7 +97,7 @@ function createCommentElement(comment) {
   commentElement.className = 'comment';
 
   const textElement = document.createElement('span');
-  var commentText = comment.text;
+  var commentText = comment.text + "\nSentimental score: ";
   var score = comment.score;
   textElement.innerText = commentText.concat(score);   //TODO try to append sentimnt score for now
 
