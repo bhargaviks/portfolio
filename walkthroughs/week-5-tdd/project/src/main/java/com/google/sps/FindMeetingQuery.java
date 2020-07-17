@@ -1,17 +1,3 @@
-// Copyright 2019 Google LLC
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     https://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 package com.google.sps;
 
 import java.util.Collection;
@@ -39,7 +25,6 @@ public final class FindMeetingQuery {
     else if(events.isEmpty()) 
       return Arrays.asList(TimeRange.WHOLE_DAY);
     
-
     // This ArrayList contains all the unavailable times of TimeRanges at which the request meeting cannot be set. 
     // This is calculated or set by taking each event from the collection, and checking if the event attendees are busy in the collection
     // of meetings, and hence, can't be available for the meeting request.  
@@ -63,7 +48,6 @@ public final class FindMeetingQuery {
     // Now let us traverse the timeranges where the meeting can be set within the working hours. 
 
     Collection<TimeRange> availableTimes = new ArrayList<TimeRange>();  // This will have the times that have a collection of all the available timeranges of events
-
     int progress = TimeRange.START_OF_DAY;            // This variable behaves like an iterator throughout the day. So, it starts from 0, which is the START time.  
     
     for(TimeRange rangeOfEvent : unavailableTimes){
@@ -82,5 +66,5 @@ public final class FindMeetingQuery {
       availableTimes.add(endOfDayMeeting);
     }
     return availableTimes;
-}
+  }
 }
