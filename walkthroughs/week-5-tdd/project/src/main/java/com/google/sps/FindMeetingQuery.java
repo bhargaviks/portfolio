@@ -17,7 +17,7 @@ public final class FindMeetingQuery {
   */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     
-    //first, check all attendees.
+    // First, check all attendees.
     Collection<String> mandatoryAttendees = request.getAttendees();
     Collection<String> optionalAttendees = request.getOptionalAttendees();
     Collection<String> newc = new ArrayList<>(); 

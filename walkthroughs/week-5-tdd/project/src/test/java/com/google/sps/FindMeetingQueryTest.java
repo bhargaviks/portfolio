@@ -68,7 +68,7 @@ public final class FindMeetingQueryTest {
     Assert.assertEquals(expected, actual);
   }
 
-  //@Test
+  @Test
   public void noOptionsForTooLongOfARequest() {
     // The duration should be longer than a day. This means there should be no options.
     int duration = TimeRange.WHOLE_DAY.duration() + 1;
@@ -273,7 +273,6 @@ public final class FindMeetingQueryTest {
     Assert.assertEquals(expected, actual);
   }
 
-  // MY TESTS
   @Test
   public void everyAttendeeIsConsideredOptionalIgnored() {
 
