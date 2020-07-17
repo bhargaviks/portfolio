@@ -20,19 +20,21 @@ public final class FindMeetingQuery {
     //first, check all attendees.
     Collection<String> mandatoryAttendees = request.getAttendees();
     Collection<String> optionalAttendees = request.getOptionalAttendees();
-    mandatoryAttendees.addAll(optionalAttendees);
+    Collection<String> newc = new ArrayList<>(); 
+    newc.addAll(mandatoryAttendees);
+    newc.addAll(optionalAttendees);
 
-    MeetingRequest allRequest = new MeetingRequest(mandatoryAttendees, request.getDuration());
-    Collection<TimeRange> withOptionalTimes = Times(events, allRequest);
-
+    MeetingRequest allRequest = new MeetingRequest(newc, request.getDuration());
+    Collection<TimeRange> withOptionalTimes = times(events, allRequest);
+    
     if( withOptionalTimes!= null && withOptionalTimes.size() == 0)
-      return Times(events,request);
+      return times(events,request);
     else
       return withOptionalTimes;
     
   }
 
-public Collection<TimeRange> Times(Collection<Event> events, MeetingRequest request){
+public Collection<TimeRange> times(Collection<Event> events, MeetingRequest request){
 
   // This is the duration of the request meeting
   long meetingDuration = request.getDuration();   
@@ -77,22 +79,23 @@ public Collection<TimeRange> Times(Collection<Event> events, MeetingRequest requ
   int progress = TimeRange.START_OF_DAY;            
   
   for(TimeRange rangeOfEvent : unavailableTimes){
+
     int rangeEnd = rangeOfEvent.end();
     int rangeStart = rangeOfEvent.start();
-
     if (progress + meetingDuration <= rangeStart){
     // If there can be a possible meeting with the requested meeting duration and that starts from progress, then it's valid.
       TimeRange availableRange = TimeRange.fromStartEnd(progress, rangeStart, false);
       availableTimes.add(availableRange);
     }
-    progress = progress+ (int)meetingDuration;    
+
+    if(rangeEnd > progress )
+      progress = rangeEnd;  
   }
 
   if (progress + meetingDuration <= fullDay){
     TimeRange endOfDayMeeting = TimeRange.fromStartEnd(progress, fullDay , false);
     availableTimes.add(endOfDayMeeting);
   }
-  
   return availableTimes;
   }
 }
