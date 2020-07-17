@@ -20,20 +20,14 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-
-
 public final class FindMeetingQuery {
 
-  /*
-  * This function is responsible for adding the "find a meeting" feature using the existing API.
-  *  @param Collection<Event> events has a collection of the events happening
-  *
-  *
-  *
-  *
-  *
-  *
-  **/
+  /**
+    This function is responsible for adding the "find a meeting" feature.
+    @param events has a collection of the events happening during the day
+    @param request has details of the meeting that is required to be scheduled.
+    @return a Collection that has all the possible timeRanges for te requested meeting.
+  */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     
     long meetingDuration = request.getDuration();      // This is the duration of the request meeting
@@ -55,7 +49,7 @@ public final class FindMeetingQuery {
       Collection<String> eventAttendees = event.getAttendees();
       TimeRange rangeOfEvent = event.getWhen();
      
-      for (String attendee : meetingAttendees) {    // checking the attendees of the meeting request 
+      for (String attendee : meetingAttendees) {    // Checking the attendees of the meeting request 
         if (eventAttendees.contains(attendee)){
           unavailableTimes.add(rangeOfEvent);        // Comes here only if even one of the members of the request cannot make it    
           break;                                    // So immediately exits
@@ -87,10 +81,6 @@ public final class FindMeetingQuery {
       TimeRange endOfDayMeeting = TimeRange.fromStartEnd(progress, 24 * 60 , false);
       availableTimes.add(endOfDayMeeting);
     }
-
-
-
     return availableTimes;
-
 }
 }
