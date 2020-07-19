@@ -8,7 +8,7 @@ import java.util.List;
 
 public final class FindMeetingQuery {
 
-  public static final int fullDay = 24 * 60;
+  public static final int DAY_LENGTH_IN_MINUTES = 24 * 60;
   /**
     This function is responsible for adding the "find a meeting" feature.
     @param events has a collection of the events happening during the day
@@ -92,8 +92,8 @@ public Collection<TimeRange> times(Collection<Event> events, MeetingRequest requ
       progress = rangeEnd;  
   }
 
-  if (progress + meetingDuration <= fullDay){
-    TimeRange endOfDayMeeting = TimeRange.fromStartEnd(progress, fullDay , false);
+  if (progress + meetingDuration <= DAY_LENGTH_IN_MINUTES){
+    TimeRange endOfDayMeeting = TimeRange.fromStartEnd(progress, DAY_LENGTH_IN_MINUTES , false);
     availableTimes.add(endOfDayMeeting);
   }
   return availableTimes;

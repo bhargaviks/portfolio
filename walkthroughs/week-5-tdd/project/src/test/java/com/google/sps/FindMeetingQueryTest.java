@@ -123,7 +123,7 @@ public final class FindMeetingQueryTest {
     Assert.assertEquals(expected, actual);
   }
 
- // @Test
+  @Test
   public void overlappingEvents() {
     // Have an event for each person, but have their events overlap. We should only see two options.
     //
@@ -278,8 +278,8 @@ public final class FindMeetingQueryTest {
 
     // Have each person have different events, and Optional attendee Person C 
     // has a busy schedule throughout the day. 
-    //  We should see two options because each person has split the restricted times,
-    //  and optional attendee has no say.
+    // We should see two options because each person has split the restricted times,
+    // and optional attendee has no say.
     //
     // Events  :       |--A--|     |--B--|
     // Optional: |-------------C---------------|
